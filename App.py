@@ -6,6 +6,11 @@ def get_table_names(conn):
     cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%';")
     return [table[0] for table in cursor.fetchall()]
 
+# ANSI escape codes for text color
+GREEN = '\033[92m'
+RED = '\033[91m'
+RESET = '\033[0m'
+
 def get_questions(conn, category, num_questions=5):
     query = f'SELECT question, answer FROM {category} ORDER BY RANDOM() LIMIT {num_questions};'
     cursor = conn.cursor()
@@ -15,6 +20,17 @@ def get_questions(conn, category, num_questions=5):
 def play_quiz_category(conn, category, num_questions=5):
     questions = get_questions(conn, category, num_questions)
     score = 0
+
+    for question, answer in questions:
+        user_answer = input(f'Q: {question}\nYour Answer: ')
+
+        if user_answer.lower() == answer.lower():
+            print(f'{GREEN}Correct!{RESET}')
+            score += 1
+        else:
+            print(f'{RED}Incorrect!{RESET} Correct answer: {answer}')
+
+    print(f'\nQuiz Completed! Your Score: {score}/{num_questions}')
 
     for question, answer in questions:
         user_answer = input(f'Q: {question}\nYour Answer: ')

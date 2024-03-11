@@ -92,6 +92,14 @@ def main():
     project_management_questions = [
         ('What is the critical path in project management?', 'The longest sequence of tasks determining the project duration'),
         ('Define risk management in projects.', 'Identifying, assessing, and mitigating potential project risks'),
+        ("Explain the concept of project scope in project management.", "The defined boundaries and deliverables of a project"),
+        ("What is the purpose of a Gantt chart in project planning?", "Visual representation of project tasks and their timelines"),
+        ("Define the term 'project risk' in the context of project management.", "Potential events or situations that may impact project objectives"),
+        ("How does a project manager handle scope creep during a project?", "By closely monitoring changes and ensuring they align with project goals"),
+        ("What is the significance of a project kickoff meeting?", "Brings together key stakeholders to establish project goals, roles, and expectations"),
+        ("Explain the concept of earned value management (EVM) in project control.", "A technique for measuring project performance and progress"),
+        ("Define the term 'project milestone' and provide an example.", "A significant point or event marking progress, e.g., project phases completion"),
+        ("How does agile project management differ from traditional project management?", "Agile emphasizes flexibility, adaptability, and iterative development")
         # Add more questions here...
     ]
 

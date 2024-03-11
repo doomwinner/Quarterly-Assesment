@@ -65,6 +65,14 @@ def main():
     personal_sales_questions = [
         ('What is consultative selling?', 'A sales approach focused on building relationships and understanding customer needs'),
         ('Define objection handling in sales.', 'Addressing and overcoming customer concerns or objections'),
+        ("Explain the concept of relationship selling in personal sales.", "Building and maintaining strong relationships with customers to drive long-term success"),
+        ("What role does active listening play in effective sales communication?", "Understanding customer needs and concerns through careful attention and response"),
+        ("Define the term 'sales objection' and provide an example.", "Customer concerns or hesitations, e.g., objections related to price, features, or competition"),
+        ("How does the SPIN selling technique work?", "Situation, Problem, Implication, Need-payoff - a questioning technique to uncover customer needs and pain points"),
+        ("What is the importance of product knowledge in sales?", "Enables sales professionals to effectively communicate the value and benefits of a product or service"),
+        ("Explain the concept of upselling in personal sales.", "Encouraging customers to purchase a higher-end product or additional features"),
+        ("Define the term 'closing' in the context of sales.", "The final step in the sales process, securing a commitment or agreement from the customer"),
+        ("How can storytelling be used in sales presentations?", "Engaging customers by sharing relatable stories to highlight product benefits and solutions")
         # Add more questions here...
     ]
 

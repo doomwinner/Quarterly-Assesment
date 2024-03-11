@@ -1,50 +1,91 @@
 import sqlite3
 
-# Function to create a new table
-def create_table(conn, table_name):
-    query = f'''
-    CREATE TABLE IF NOT EXISTS {table_name} (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        question TEXT,
-        answer TEXT
-    );
-    '''
-    conn.execute(query)
+# Function to create tables
+def create_tables(conn):
+    categories = [
+        'Strategic_Management',
+        'Digital_Marketing',
+        'Personal_Sales',
+        'Information_Systems',
+        'Project_Management'
+    ]
 
-# Function to add data to a table
-def add_data(conn, table_name, questions):
-    query = f'INSERT INTO {table_name} (question, answer) VALUES (?, ?);'
+    for category in categories:
+        query = f'''
+        CREATE TABLE IF NOT EXISTS {category} (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            question TEXT,
+            answer TEXT
+        );
+        '''
+        conn.execute(query)
+
+# Function to add data to tables
+def add_data(conn, category, questions):
+    query = f'INSERT INTO {category} (question, answer) VALUES (?, ?);'
     conn.executemany(query, questions)
 
 # Main function to create tables and add data
 def main():
-    categories = ['Strategic Management', 'Digital Marketing', 'Personal Sales', 'Information Systems']
-
     # Connect to the database
     conn = sqlite3.connect('quiz_bowl.db')
 
-    for category in categories:
-        create_table(conn, category)
+    # Create tables
+    create_tables(conn)
 
-    # You can use generative AI to get the questions and answers in a suitable format
-    # Example questions for each category
-    strategic_management_questions = [('What is SWOT analysis?', 'Strengths, Weaknesses, Opportunities, Threats'),
-                                      # Add more questions here...]
+    # Sample questions for each category (replace with actual questions)
+    strategic_management_questions = [
+        ('What is SWOT analysis?', 'Strengths, Weaknesses, Opportunities, Threats'),
+        ('Define competitive advantage.', 'A unique advantage that allows a business to outperform its rivals'),
+        ("Define core competencies in the context of strategic management.", "Distinctive capabilities that provide a competitive advantage"),
+        ("What is the purpose of a PESTLE analysis?", "To identify and analyze external factors affecting an organization"),
+        ("Explain the concept of diversification in business strategy.", "Expanding into new markets or products to reduce risk"),
+        ("What role does the SWOT analysis play in strategic planning?", "Identifying internal strengths and weaknesses, and external opportunities and threats"),
+        ("Define the term 'strategic vision' in strategic management.", "A clear and inspiring long-term direction for the organization"),
+        ("How does the BCG matrix categorize products?", "Into stars, cash cows, question marks, and dogs based on market share and growth rate"),
+        ("What is the difference between differentiation and cost leadership strategies?", "Differentiation focuses on uniqueness, while cost leadership aims for the lowest cost in the industry"),
+        ("Explain the significance of a mission statement in strategic management.", "Communicates the purpose and values of an organization to stakeholders")
+        # Add more questions here...
+    ]
 
-    digital_marketing_questions = [('What is SEO?', 'Search Engine Optimization'),
-                                   # Add more questions here...]
+    digital_marketing_questions = [
+        ('What is SEO?', 'Search Engine Optimization'),
+        ('Explain the concept of conversion rate optimization (CRO).', 'Improving the percentage of website visitors who take a desired action'),
+        ("Explain the concept of inbound marketing.", "Attracting customers through valuable content and experiences"),
+        ("What is the purpose of A/B testing in digital marketing?", "To compare two versions of a webpage or campaign to determine which performs better"),
+        ("Define the term 'conversion rate' in online marketing.", "The percentage of website visitors who complete a desired goal"),
+        ("How does social media marketing contribute to brand awareness?", "By engaging with a target audience and sharing relevant content"),
+        ("What is the role of a call-to-action (CTA) in email marketing?", "Encourages recipients to take a specific action, such as clicking a link or making a purchase"),
+        ("Explain the concept of retargeting in digital advertising.", "Displaying ads to users who have previously visited a website or interacted with certain content"),
+        ("Define the term 'keyword research' in the context of SEO.", "The process of identifying relevant search terms to optimize content and improve search engine rankings"),
+        ("How does pay-per-click (PPC) advertising work?", "Advertisers pay a fee each time their ad is clicked, driving traffic to their website")
+        # Add more questions here...
+    ]
 
-    personal_sales_questions = [('Define relationship selling.', 'Building and maintaining relationships with clients'),
-                                # Add more questions here...]
+    personal_sales_questions = [
+        ('What is consultative selling?', 'A sales approach focused on building relationships and understanding customer needs'),
+        ('Define objection handling in sales.', 'Addressing and overcoming customer concerns or objections'),
+        # Add more questions here...
+    ]
 
-    information_systems_questions = [('What is a database?', 'A structured collection of data'),
-                                     # Add more questions here...]
+    information_systems_questions = [
+        ('What is a database?', 'A structured collection of data'),
+        ('Explain the difference between a router and a switch.', 'Router connects different networks, while a switch connects devices within a network'),
+        # Add more questions here...
+    ]
+
+    project_management_questions = [
+        ('What is the critical path in project management?', 'The longest sequence of tasks determining the project duration'),
+        ('Define risk management in projects.', 'Identifying, assessing, and mitigating potential project risks'),
+        # Add more questions here...
+    ]
 
     # Add data to tables
-    add_data(conn, 'Strategic Management', strategic_management_questions)
-    add_data(conn, 'Digital Marketing', digital_marketing_questions)
-    add_data(conn, 'Personal Sales', personal_sales_questions)
-    add_data(conn, 'Information Systems', information_systems_questions)
+    add_data(conn, 'Strategic_Management', strategic_management_questions)
+    add_data(conn, 'Digital_Marketing', digital_marketing_questions)
+    add_data(conn, 'Personal_Sales', personal_sales_questions)
+    add_data(conn, 'Information_Systems', information_systems_questions)
+    add_data(conn, 'Project_Management', project_management_questions)
 
     # Commit changes and close the connection
     conn.commit()

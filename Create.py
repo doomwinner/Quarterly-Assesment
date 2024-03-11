@@ -79,6 +79,13 @@ def main():
     information_systems_questions = [
         ('What is a database?', 'A structured collection of data'),
         ('Explain the difference between a router and a switch.', 'Router connects different networks, while a switch connects devices within a network'),
+        ("Explain the concept of data normalization in database design.", "Organizing data to minimize redundancy and improve data integrity"),
+        ("What is the role of a database management system (DBMS) in information systems?", "Manages and organizes data, ensuring efficient retrieval and storage"),
+        ("Define the term 'data warehousing' in the context of information systems.", "Consolidating and storing data from different sources for analysis and reporting"),
+        ("How does a relational database differ from a non-relational database?", "Relational databases use a tabular structure with predefined relationships, while non-relational databases use various structures like key-value pairs"),
+        ("What is the purpose of an entity-relationship diagram (ERD) in database design?", "Visual representation of entities and their relationships to model a database system"),
+        ("Explain the concept of data mining in information systems.", "Extracting patterns and information from large datasets to uncover trends and insights"),
+        ("Define the term 'firewall' in the context of network security.", "A barrier that monitors and controls incoming and outgoing network traffic based on predetermined security rules"),
         # Add more questions here...
     ]
 

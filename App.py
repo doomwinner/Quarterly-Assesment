@@ -1,45 +1,35 @@
 import sqlite3
-import random
-import os.path
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-db_path = os.path.join(BASE_DIR, "quiz_bowl.db")
-with sqlite3.connect(db_path) as db:
-
-    def play_quiz(conn, category):
-    # Retrieve questions for the selected category
-        query = f'SELECT * FROM {category};'
-        cursor = conn.cursor()
-        cursor.execute(query)
-        questions = cursor.fetchall()
-
-    # Shuffle the questions
-        random.shuffle(questions)
-
-    # Play the quiz
-        for question, answer in questions:
-            user_answer = input(f'Q: {question}\nYour Answer: ')
-
-        if user_answer.lower() == answer.lower():
-            print('Correct! (in green)')
-        else:
-            print('Incorrect! (in red) Correct answer: ', answer)
+def get_table_names(conn):
+    cursor = conn.cursor()
+    cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+    return [table[0] for table in cursor.fetchall()]
 
 def main():
     # Connect to the database
     conn = sqlite3.connect('quiz_bowl.db')
 
-    # Allow the user to choose a category
-    categories = ['Strategic Management', 'Digital Marketing', 'Personal Sales', 'Information Systems','Project Management']
-    print('Choose a category:')
-    for i, category in enumerate(categories, 1):
+    # Get table names
+    table_names = get_table_names(conn)
+
+    # Display available categories
+    print("Available Categories:")
+    for i, category in enumerate(table_names, 1):
         print(f'{i}. {category}')
 
-    choice = int(input('Enter the number of your choice: '))
-    selected_category = categories[choice - 1]
+    # Allow the user to choose a category
+    try:
+        choice = int(input('Enter the number of your chosen category: '))
+        if 1 <= choice <= len(table_names):
+            selected_category = table_names[choice - 1]
+            print(f"\nYou selected '{selected_category}'. Let's play the Quiz!\n")
 
-    # Play the quiz
-    play_quiz(conn, selected_category)
+            # You can add your quiz logic here using the selected_category
+            # For example, you can call a function to play the quiz for the selected category
+        else:
+            print("Invalid choice. Please choose a valid category.")
+    except ValueError:
+        print("Invalid input. Please enter a number.")
 
     # Close the connection
     conn.close()
